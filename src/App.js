@@ -12,8 +12,7 @@ function App() {
 
   const addUserHandler = (userInfo) => {
     setAllUsersList(prevUsers => {
-      const updatedUsers = [...prevUsers];
-      updatedUsers.unshift({id: Math.random(), name: userInfo.name, age: userInfo.age});
+      const updatedUsers = [{id: Math.random(), name: userInfo.name, age: userInfo.age}, ...prevUsers];
       console.log('Form submitted. In app');
       
       return updatedUsers;

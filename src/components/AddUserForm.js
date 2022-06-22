@@ -1,16 +1,18 @@
 function AddUserForm(props) {
     const formSubmitHandler = event => {
+        const enteredName = document.getElementById('username').value;
+        const enteredAge = document.getElementById('age').value;
+
         event.preventDefault();
-        console.log('Form submitted.');
-        props.onAddUser({name: 'Joyce', age: '30'});
+        props.onAddUser({name: enteredName, age: enteredAge});
     }
     
     return (
         <form onSubmit={formSubmitHandler}>
             <label>Username</label>
-            <input type='text' />
+            <input type='text' id='username'/>
             <label>Age</label>
-            <input type='text' />
+            <input type='text' id='age'/>
             <button type='submit'>Add User</button>
         </form>
     )
