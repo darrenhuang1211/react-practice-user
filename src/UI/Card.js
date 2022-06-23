@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 const StyledCard = styled.div`
-    border-radius: 12px;
-    padding: 0.5rem;
-    background-color: white;
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 90%;
+    max-width: 40rem;
+    border-radius: 10px;
+    background: white;
 `;
 
 function Card(props) {

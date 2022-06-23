@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 const StyledUser = styled.div`
     & li {
-        list-style: none;
-        border: 1px solid black;
+        border: 1px solid #ccc;
+        margin: 0.5rem 0;
         padding: 0.5rem;
-        margin: 0.5rem;
     }
 `;
 

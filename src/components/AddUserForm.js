@@ -3,8 +3,6 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 
 const StyledForm = styled.div`
-    margin: 0.5rem auto;
-
     & label {
         font-weight: bold;
         display: block;
@@ -12,9 +10,17 @@ const StyledForm = styled.div`
     }
 
     & input {
+        font: inherit;
         display: block;
         border: 1px solid;
-        margin: 0.5rem auto;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        padding: 0.15rem;
+    }
+
+    & input:focus {
+        outline: none;
+        border-color: #4f005f;
     }
 `;
 
@@ -25,11 +31,11 @@ function AddUserForm(props) {
 
         event.preventDefault();
 
-        if (nameField.value.length === 0 || ageField.value.length === 0) {
+        if (nameField.value.trim().length === 0 || ageField.value.length === 0) {
             console.log('Invalid input');
             return;
         }
-        if (+(ageField.value) < 0) {
+        if (+(ageField.value) < 1) {
             console.log('Invalid age');
             return;
         }
@@ -43,10 +49,10 @@ function AddUserForm(props) {
         <Card>
             <form onSubmit={formSubmitHandler}>
                 <StyledForm>
-                    <label>Username</label>
+                    <label htmlFor='username'>Username</label>
                     <input type='text' id='username'/>
-                    <label>Age</label>
-                    <input type='text' id='age'/>
+                    <label htmlFor='age'>Age (Years)</label>
+                    <input type='number' id='age'/>
                     <Button type='submit'>Add User</Button>
                 </StyledForm>
             </form>
