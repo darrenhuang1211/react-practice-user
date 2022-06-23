@@ -1,20 +1,56 @@
+import styled from "styled-components";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
+
+const StyledForm = styled.div`
+    margin: 0.5rem auto;
+
+    & label {
+        font-weight: bold;
+        display: block;
+        margin: 0.5rem;
+    }
+
+    & input {
+        display: block;
+        border: 1px solid;
+        margin: 0.5rem auto;
+    }
+`;
+
 function AddUserForm(props) {
     const formSubmitHandler = event => {
-        const enteredName = document.getElementById('username').value;
-        const enteredAge = document.getElementById('age').value;
+        const nameField = document.getElementById('username');
+        const ageField = document.getElementById('age');
 
         event.preventDefault();
-        props.onAddUser({name: enteredName, age: enteredAge});
+
+        if (nameField.value.length === 0 || ageField.value.length === 0) {
+            console.log('Invalid input');
+            return;
+        }
+        if (+(ageField.value) < 0) {
+            console.log('Invalid age');
+            return;
+        }
+
+        props.onAddUser({name: nameField.value, age: ageField.value});
+        nameField.value = '';
+        ageField.value = '';
     }
     
     return (
-        <form onSubmit={formSubmitHandler}>
-            <label>Username</label>
-            <input type='text' id='username'/>
-            <label>Age</label>
-            <input type='text' id='age'/>
-            <button type='submit'>Add User</button>
-        </form>
+        <Card>
+            <form onSubmit={formSubmitHandler}>
+                <StyledForm>
+                    <label>Username</label>
+                    <input type='text' id='username'/>
+                    <label>Age</label>
+                    <input type='text' id='age'/>
+                    <Button type='submit'>Add User</Button>
+                </StyledForm>
+            </form>
+        </Card>
     )
 }
 
