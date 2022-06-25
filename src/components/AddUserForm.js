@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -33,6 +34,8 @@ const StyledForm = styled.div`
 `;
 
 function AddUserForm(props) {
+    const [error, setError]= useState();
+
     const formSubmitHandler = event => {
         const nameField = document.getElementById('username');
         const ageField = document.getElementById('age');
@@ -40,11 +43,17 @@ function AddUserForm(props) {
         event.preventDefault();
 
         if (nameField.value.trim().length === 0 || ageField.value.length === 0) {
-            console.log('Invalid input');
+            setError({
+                title: 'Invalid input',
+                message: 'Please enter a valid name and age (non-empty values)'
+            });
             return;
         }
         if (+(ageField.value) < 1) {
-            console.log('Invalid age');
+            setError({
+                title: 'Invalid age',
+                message: 'Please enter a valid age (> 0)'
+            });
             return;
         }
 
@@ -52,10 +61,14 @@ function AddUserForm(props) {
         nameField.value = '';
         ageField.value = '';
     }
+
+    const closeErrorHandler = event => {
+        setError(null);
+    }
     
     return (
         <div>
-            <ErrorModal title='An error occurred' message='Something went wrong.'/>
+            {error && <ErrorModal title={error.title} message={error.message} handler={closeErrorHandler}/>}
             <UserFormCard>
                 <form onSubmit={formSubmitHandler}>
                     <StyledForm>

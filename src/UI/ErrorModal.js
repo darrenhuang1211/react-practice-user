@@ -53,7 +53,7 @@ const StyledModal = styled.div`
 function ErrorModal(props) {
     return (
         <StyledModal>
-            <div className='backdrop'/>
+            <div className='backdrop' onClick={props.handler}/>
             <Card className='modal'>
                 <header>
                     <h2>{props.title}</h2>
@@ -62,7 +62,7 @@ function ErrorModal(props) {
                     <p>{props.message}</p>
                 </div>
                 <footer className='actions'>
-                    <Button>Close</Button>
+                    <Button onClick={props.handler}>Close</Button>
                 </footer>
             </Card>
         </StyledModal>
