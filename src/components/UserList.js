@@ -2,14 +2,20 @@ import User from './User';
 import Card from '../UI/Card';
 import styled from 'styled-components';
 
+const UserListCard = styled(Card)`
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 40rem;
+`;
+
 const StyledList = styled.ul`
   list-style: none;
-  margin: auto;
+  padding: 1rem;
 `;
 
 function UserList(props) {
     return (
-      <Card>
+      <UserListCard>
         <StyledList>
           {props.users.map(user => (
             <User
@@ -20,7 +26,7 @@ function UserList(props) {
             </User>
           ))}
         </StyledList>
-      </Card>
+      </UserListCard>
     );
 }
 

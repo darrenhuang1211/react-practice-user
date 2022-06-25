@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
+
+const UserFormCard = styled(Card)`
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 90%;
+    max-width: 40rem;
+`;
 
 const StyledForm = styled.div`
     & label {
@@ -46,17 +54,20 @@ function AddUserForm(props) {
     }
     
     return (
-        <Card>
-            <form onSubmit={formSubmitHandler}>
-                <StyledForm>
-                    <label htmlFor='username'>Username</label>
-                    <input type='text' id='username'/>
-                    <label htmlFor='age'>Age (Years)</label>
-                    <input type='number' id='age'/>
-                    <Button type='submit'>Add User</Button>
-                </StyledForm>
-            </form>
-        </Card>
+        <div>
+            <ErrorModal title='An error occurred' message='Something went wrong.'/>
+            <UserFormCard>
+                <form onSubmit={formSubmitHandler}>
+                    <StyledForm>
+                        <label htmlFor='username'>Username</label>
+                        <input type='text' id='username'/>
+                        <label htmlFor='age'>Age (Years)</label>
+                        <input type='number' id='age'/>
+                        <Button type='submit'>Add User</Button>
+                    </StyledForm>
+                </form>
+            </UserFormCard>
+        </div>
     )
 }
 
